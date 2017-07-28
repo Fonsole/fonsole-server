@@ -1,5 +1,5 @@
 {
-  "name": "PPlatform",
+  "name": "pplatform",
   "version": "1.1.0",
   "description": "Allows to group webusers via a code they can share",
   "dependencies": {
@@ -24,7 +24,7 @@
     "node-sass": "^4.5.3",
     "pug": "^2.0.0-rc.2",
     "sass-loader": "^6.0.6",
-    "socket.io": "^1.7.4",
+    "socket.io": "^2.0.3",
     "socket.io-client": "^2.0.3",
     "style-loader": "^0.18.2",
     "url-loader": "^0.5.9",
