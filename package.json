@@ -1,0 +1,40 @@
+{
+  "name": "PPlatform",
+  "version": "1.1.0",
+  "description": "Allows to group webusers via a code they can share",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3",
+    "mongodb": "^2.2.30"
+  },
+  "scripts": {
+    "start": "node pplatform.js",
+    "www": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
+    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
+  },
+  "devDependencies": {
+    "babel-core": "^6.25.0",
+    "babel-loader": "^7.1.1",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-es2015": "^6.24.1",
+    "bootstrap": "^4.0.0-alpha.6",
+    "bootstrap-vue": "^0.18.0",
+    "cross-env": "^5.0.1",
+    "css-loader": "^0.28.4",
+    "node-sass": "^4.5.3",
+    "pug": "^2.0.0-rc.2",
+    "sass-loader": "^6.0.6",
+    "socket.io": "^1.7.4",
+    "socket.io-client": "^2.0.3",
+    "style-loader": "^0.18.2",
+    "url-loader": "^0.5.9",
+    "vue": "^2.4.2",
+    "vue-loader": "^13.0.2",
+    "vue-router": "^2.7.0",
+    "vue-template-compiler": "^2.4.2",
+    "vuex": "^2.3.1",
+    "webpack": "^3.4.0",
+    "webpack-dev-server": "^2.6.1",
+    "webpack-stream": "^3.2.0"
+  }
+}
