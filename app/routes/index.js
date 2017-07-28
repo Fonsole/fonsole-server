@@ -1,3 +1,3 @@
-module.exports = function (app, db) {
+module.exports = (app, db) => {
   require('./news_routes')(app, db);
 };

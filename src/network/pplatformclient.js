@@ -1,13 +1,11 @@
 // pure platform interface
-// contains still some jquery commands accessing the GUI they will move into the index.html in the future
-
-/* eslint-env browser */
 
 import Netgroup from './netgroupclient';
 import SignalingMessageType from './SignalingMessageTypes';
 import TAG from './tags';
 
-/* Unused on client side
+/*
+Unused on client side
 class ControllerDiscoveryMessage {
   constructor(lConnectionId, lUserId, lName) {
     this.connectionId = lConnectionId;
@@ -58,7 +56,7 @@ class PPlatform {
     // only available on the view side for now
     this.mControllers = {};
 
-    // the name the user chose. 
+    // the name the user chose.
     this.mOwnName = null;
 
     this.sigChan = new Netgroup();
@@ -69,16 +67,16 @@ class PPlatform {
   }
 
   /**
-     * Returns an object containing connection id as key and controller
-     * information as values.
-     * 
-     * @returns {c|PPlatform.mControllers}
-     */
+   * Returns an object containing connection id as key and controller
+   * information as values.
+   *
+   * @returns {c|PPlatform.mControllers}
+   */
   getControllers() {
     return this.mControllers;
   }
 
-  Log(msg) {
+  Log(msg) { // eslint-disable-line
     console.debug(msg);
   }
 
@@ -89,10 +87,10 @@ class PPlatform {
     return this.mOwnUserId;
   }
   /**
-     * Legacy version of getOwnUserId
-     * 
-     * @returns {?number} Own user ID
-     */
+   * Legacy version of getOwnUserId
+   *
+   * @returns {?number} Own user ID
+   */
   getOwnId() {
     return this.mOwnUserId;
   }
@@ -134,11 +132,11 @@ class PPlatform {
     this.mMessageListener.push(lListener);
   }
 
-  /** 
-     * Will handle all incomming messages + send them to the listener outside of pplatform
-     * 
-     * All tasks that are unique to the netgroup commands don't belong here
-     */
+  /**
+   * Will handle all incomming messages + send them to the listener outside of pplatform
+   *
+   * All tasks that are unique to the netgroup commands don't belong here
+   */
   handleMessage(lTag, lContent, lId) {
     // events to handle before the content gets it
 
@@ -178,7 +176,7 @@ class PPlatform {
         }
         // register as controller at the view
         const controllerRegisterData = { name };
-        this.sendMessage(TAG.CONTROLLER_REGISTER, JSON.stringify(controllerRegisterData), this.mViewId);
+        this.sendMessageObj(TAG.CONTROLLER_REGISTER, controllerRegisterData, this.mViewId);
         break;
       }
       case TAG.CONTROLLER_LEFT: {
@@ -187,16 +185,16 @@ class PPlatform {
     }
 
     // send the event out to the game and ui
-    for (let i = 0; i < this.mMessageListener.length; i++) {
+    for (let i = 0; i < this.mMessageListener.length; i += 1) {
       this.mMessageListener[i](lTag, lContent, lId);
     }
   }
 
   /**
-     * This is the message handler based on Netgroup.
-     * Only the content ofer user messages will be send
-     * to the games outside of platform via mMessageListener
-     */
+   * This is the message handler based on Netgroup.
+   * Only the content ofer user messages will be send
+   * to the games outside of platform via mMessageListener
+   */
   OnNetgroupMessageInternal(lType, lId, lMsg) {
     switch (lType) {
       case SignalingMessageType.Connected: {
@@ -239,6 +237,7 @@ class PPlatform {
   }
 
   injectAPI(obj) {
+    obj.platformType = 'controller';
     obj.platformSendMessage = this.sendMessage.bind(this);
     obj.platformAddMessageListener = this.addMessageListener.bind(this);
   }
@@ -247,17 +246,12 @@ class PPlatform {
 
   onClose() {
     this.handleMessage(TAG.DISCONNECTED, null, -1);
-    /* $('#openroom').attr('hidden', false);
-        $('#joinspan').attr('hidden', false);
-        $('#connectedspan').attr('hidden', true); */
     // disconnected. clean up all data
     this.mControllers = {};
   }
 
-  onConnect() {
-    /* $('#openroom').attr('hidden', true);
-        $('#joinspan').attr('hidden', true);
-        $('#connectedspan').attr('hidden', false); */
+  onConnect() { // eslint-disable-line
+
   }
 
   ShowGame(lGameName) {
@@ -267,7 +261,7 @@ class PPlatform {
 
   static GetRandomKey() {
     let result = '';
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < 6; i += 1) {
       result += String.fromCharCode(65 + Math.round(Math.random() * 25));
     }
     return result;
