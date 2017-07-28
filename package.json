@@ -21,6 +21,8 @@
     "bootstrap-vue": "^0.18.0",
     "cross-env": "^5.0.1",
     "css-loader": "^0.28.4",
+    "eslint-import-resolver-webpack": "^0.8.3",
+    "friendly-errors-webpack-plugin": "^1.6.1",
     "node-sass": "^4.5.3",
     "pug": "^2.0.0-rc.2",
     "sass-loader": "^6.0.6",
@@ -34,7 +36,9 @@
     "vue-template-compiler": "^2.4.2",
     "vuex": "^2.3.1",
     "webpack": "^3.4.0",
+    "webpack-dev-middleware": "^1.11.0",
     "webpack-dev-server": "^2.6.1",
+    "webpack-hot-middleware": "^2.18.2",
     "webpack-stream": "^3.2.0"
   }
 }
