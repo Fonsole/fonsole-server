@@ -4,13 +4,14 @@ import BootstrapVue from 'bootstrap-vue/dist/bootstrap-vue.esm';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import App from './App.vue';
+import router from './router';
 import { PPlatform } from './network/pplatformclient';
 import TAG from './network/tags';
-import router from './router';
 
 Vue.use(Vuex);
 Vue.use(BootstrapVue);
-// Vue.config.productionTip = false;
+Vue.config.productionTip = false;
+
 const gPlatform = new PPlatform();
 const store = new Vuex.Store({
   state: {
@@ -18,7 +19,7 @@ const store = new Vuex.Store({
   },
   mutations: {
     injectPlatform: (state, frame) => {
-      gPlatform.injectAPI(frame.contentWindow);
+      gPlatform.injectAPI(frame);
     },
     joinRoom: (state, payload) => {
       gPlatform.Log('Join room');
@@ -31,20 +32,21 @@ const store = new Vuex.Store({
   },
 });
 
-const vm = new Vue({
+// eslint-disable-next-line no-new
+new Vue({
   el: '#app',
   router,
   store,
   template: '<App/>',
   components: { App },
+  /*
   methods: {
     disconnect() {
       this.$state.mutations.disconnect();
     },
   },
+  */
 });
-gPlatform.Vue = vm;
-
 
 gPlatform.addMessageListener((lTag, lContent) => {
   gPlatform.Log(`${lTag}: ${lContent}`);

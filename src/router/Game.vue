@@ -1,13 +1,18 @@
 <template>
   <div>
-    <!-- :src="`https://localhost:80/game/${$route.parmas.game}/pc.html`" -->
-    <iframe id="game" ref="game" src="/static/games/test.html"></iframe>
+    <iframe id="game" ref="game" :src="url"></iframe>
   </div>
 </template>
 <script>
 export default {
+  data() {
+    return {
+      url: '',
+    };
+  },
   mounted() {
     this.$store.commit('injectPlatform', this.$refs.game);
+    this.url = '/static/games/test.html';
   },
 };
 </script>
