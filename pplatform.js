@@ -4,22 +4,22 @@
  *
  */
 
-const express = require('express');
 const path = require('path');
+const express = require('express');
+const webpack = require('webpack');
+const Networking = require('fonsole-networking');
 
 const app = express();
-const webpack = require('webpack');
 
-// module netgroup. allows us to start the socket.io server
-const Netgroup = require('./netgroup');
+const networking = new Networking({
+  port: 3001,
+  isLocal: false,
+});
+networking.listen();
 
 const database = require('./database');
 
 database.init(app);
-
-// setup the netgroup server
-const netgroup = new Netgroup();
-netgroup.listen(3001);
 
 
 // process.env.PORT will be replaced with a pipe by azure if not hosted there the given port is used
