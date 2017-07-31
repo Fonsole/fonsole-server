@@ -1,34 +1,37 @@
 import NetworkingAPI from 'fonsole-networking/client';
 import Vue from 'vue';
 import Vuex from 'vuex';
-import BootstrapVue from 'bootstrap-vue/dist/bootstrap-vue.esm';
-import 'bootstrap-vue/dist/bootstrap-vue.css';
-import 'bootstrap/dist/css/bootstrap.css';
+
 import App from './App.vue';
+import Localization from './localization';
 import router from './router';
 
 Vue.use(Vuex);
-Vue.use(BootstrapVue);
 Vue.config.productionTip = false;
 
 const networking = new NetworkingAPI();
-
 const store = new Vuex.Store({
   state: {
-    currentGame: 'menu',
+    roomName: '',
+    currentGame: '',
   },
   mutations: {
-    injectPlatform: (state, frame) => {
-      networking.injectAPI(frame);
+    setRoomName: (state, roomName) => {
+      state.roomName = roomName;
     },
-    setName: (state, name) => {
-      networking.playername = name;
+    attachNetworkingApi: (state, frame) => {
+      // eslint-disable-next-line no-underscore-dangle
+      frame.__NetworkingAPI = networking.export();
     },
-    joinRoom: (state, payload) => {
-      networking.joinRoom(payload.roomname);
+  },
+  actions: {
+    joinRoom(state, payload) {
+      networking.joinRoom(payload.roomName).then(room => state.commit('setRoomName', room));
     },
   },
 });
+
+Vue.use(Localization, store);
 
 // eslint-disable-next-line no-new
 new Vue({
