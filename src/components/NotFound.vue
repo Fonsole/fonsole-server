@@ -1,7 +1,10 @@
-<template lang="pug">
-  div
-    h2 404
-    router-link(to="/") GO HOME
+<template>
+  <div>
+    <h2>404</h2>
+    <router-link to="/">
+      GO HOME
+    </router-link>
+  </div>
 </template>
 
 <script>

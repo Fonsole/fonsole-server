@@ -28,7 +28,6 @@
     "fonsole-networking": "git+https://github.com/ark120202/fonsole-networking.git",
     "friendly-errors-webpack-plugin": "^1.6.1",
     "node-sass": "^4.5.3",
-    "pug": "^2.0.0-rc.2",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.18.2",
     "url-loader": "^0.5.9",
