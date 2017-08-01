@@ -2,7 +2,7 @@ import NetworkingAPI from 'fonsole-networking/client';
 import Vue from 'vue';
 import Vuex from 'vuex';
 
-import App from './App.vue';
+import App from './App';
 import Localization from './localization';
 import router from './router';
 
