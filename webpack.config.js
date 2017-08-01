@@ -1,6 +1,10 @@
 const path = require('path');
 const webpack = require('webpack');
 
+function resolve(dir) {
+  return path.join(__dirname, dir);
+}
+
 module.exports = {
   entry: './src/main.js',
   output: {
@@ -12,7 +16,7 @@ module.exports = {
     extensions: ['.js', '.vue', '.json'],
     alias: {
       vue$: 'vue/dist/vue.esm.js',
-      '@': path.resolve(__dirname, './src'),
+      '@': resolve('src'),
     },
   },
   module: {
@@ -33,7 +37,7 @@ module.exports = {
       {
         test: /\.js$/,
         loader: 'babel-loader',
-        exclude: /node_modules/,
+        include: [resolve('src'), resolve('test')],
       },
       {
         test: /\.css$/,
