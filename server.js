@@ -29,15 +29,24 @@ const webpackConfig = require('./webpack.config');
 
 const compiler = webpack(webpackConfig);
 
-app.use(require('webpack-dev-middleware')(compiler, {
-  noInfo: true,
-  publicPath: webpackConfig.output.publicPath,
-}));
 
-app.use(require('webpack-hot-middleware')(compiler, {
-  log: false,
-  heartbeat: 2000,
-}));
+if (process.env.NODE_ENV === 'production') {
+  // Production server. Just build everything with webpack
+  compiler.run((err, stats) => {
+    if (err || stats.hasErrors()) throw err || stats;
+  });
+} else {
+  // Development server. Enable hot-reload
+  app.use(require('webpack-dev-middleware')(compiler, {
+    noInfo: true,
+    publicPath: webpackConfig.output.publicPath,
+  }));
+
+  app.use(require('webpack-hot-middleware')(compiler, {
+    log: false,
+    heartbeat: 2000,
+  }));
+}
 
 app.use('/dist/', express.static('./dist'));
 app.use('/static/', express.static('./static'));
