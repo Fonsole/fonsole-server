@@ -1,31 +1,42 @@
 <template>
   <div>
     <div class="logo">
-      <img class="logo-img" src="http://placehold.it/300x125" />
+      <img class="logo-img" src="http://placehold.it/300x125"></img>
     </div>
     <div class="container">
       <form>
         <fieldset>
           <div class="roomField">
-            <label for="roomname" class="text-signin">Room Code</label>
+            <label for="roomName" class="text-signin">Room Code</label>
             <br>
-            <input id="roomname" class="pure-input-1 jbg-input" v-model="roomname" :value="roomname.toUpperCase()" @input="roomname = $event.target.value.toUpperCase()" type="text" tabindex="1" placeholder="ENTER ROOM CODE" style="text-transform:uppercase;" maxlength="6" autocapitalize="off" autocorrect="off" autocomplete="off">
-          </div>
-          <div class="nameField">
-            <label for="playername" class="text-signin">Name (Limit 12 Characters)</label>
-            <br>
-            <input id="playername" class="pure-input-1 jbg-input" v-model="playername" :value="playername.toUpperCase()" @input="playername = $event.target.value.toUpperCase()" type="text" tabindex="2" placeholder="ENTER YOUR NAME" style="text-transform:uppercase;" maxlength="12" autocapitalize="off" autocorrect="off" autocomplete="off">
+            <input
+              id="roomName"
+              class="pure-input-1 jbg-input"
+              v-model="roomName"
+              :value="roomName.toUpperCase()"
+              @input="roomName = $event.target.value.toUpperCase()"
+              type="text"
+              tabindex="1"
+              placeholder="ENTER ROOM CODE"
+              maxlength="6"
+              autocapitalize="off"
+              autocorrect="off"
+              autocomplete="off"
+            >
           </div>
         </fieldset>
       </form>
       <div class="button">
-        <input type="submit" value="PLAY" id="button-join" tabindex="3" class="button-signin button-blue button-xlarge pure-button" :disabled="joining" v-on:click="join">
+        <input
+          type="submit"
+          value="PLAY"
+          id="button-join"
+          tabindex="3"
+          class="button-signin button-blue button-xlarge pure-button"
+          :disabled="joining"
+          @click="join"
+        >
       </div>
-      <a href="./bigview.zip">
-        <div class="button">
-          <input type="submit" value="Download Desktop Game Client" id="button-download" tabindex="3" class="button-signin button-blue button-xlarge pure-button">
-        </div>
-      </a>
     </div>
   </div>
 </template>
@@ -35,7 +46,7 @@ export default {
   data() {
     return {
       joining: false,
-      roomname: localStorage.roomname || '',
+      roomName: localStorage.roomName || '',
     };
   },
   methods: {

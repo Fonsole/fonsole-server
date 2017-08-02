@@ -5,11 +5,9 @@
 </template>
 <script>
 export default {
-  data() {
-    return {
-      url: '',
-    };
-  },
+  data: () => ({
+    url: '',
+  }),
   mounted() {
     this.$store.commit('attachNetworkingApi', this.$refs.game);
     this.url = '/static/games/test.html';

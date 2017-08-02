@@ -7,13 +7,13 @@
         </button>
       </span>
     </div>
-    <router-view id="routerView" />
+    <router-view id="routerView"></router-view>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'app',
+  name: 'App',
 };
 </script>
 
