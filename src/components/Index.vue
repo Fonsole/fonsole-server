@@ -50,12 +50,10 @@ export default {
     };
   },
   methods: {
-    join() {
-      localStorage.gameid = this.roomname;
-      localStorage.playername = this.playername;
-      this.$store.commit('joinRoom', {
-        roomname: this.roomname,
-        playername: this.playername,
+    async join() {
+      localStorage.gameid = this.roomName;
+      await this.$store.dispatch('joinRoom', {
+        roomName: this.roomName,
       });
 
       // since the game redirects in case of an error, we can just

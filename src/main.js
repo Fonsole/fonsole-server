@@ -25,8 +25,10 @@ const store = new Vuex.Store({
     },
   },
   actions: {
-    joinRoom(state, payload) {
-      networking.joinRoom(payload.roomName).then(room => state.commit('setRoomName', room));
+    async joinRoom(state, payload) {
+      const { roomName } = await networking.joinRoom(payload.roomName);
+      state.commit('setRoomName', roomName);
+      return roomName;
     },
   },
 });
@@ -35,11 +37,11 @@ Vue.use(Localization, store);
 
 // eslint-disable-next-line no-new
 new Vue({
-  el: '#app',
-  router,
-  store,
-  template: '<App/>',
   components: { App },
+  el: '#app',
+  template: '<App/>',
+  store,
+  router,
   /*
   methods: {
     disconnect() {

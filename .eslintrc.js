@@ -11,21 +11,23 @@ module.exports = {
   },
   extends: [
     'airbnb-base',
+    'plugin:promise/recommended',
     'plugin:vue/recommended',
     'plugin:unicorn/recommended',
   ],
   plugins: [
+    'promise',
     'unicorn',
   ],
   rules: {
     // don't require .vue extension when importing
     'import/extensions': ['error', 'always', {
-      'js': 'never',
-      'vue': 'never',
+      js: 'never',
+      vue: 'never',
     }],
     // allow optionalDependencies
     'import/no-extraneous-dependencies': ['error', {
-      'optionalDependencies': ['test/unit/index.js']
+      optionalDependencies: ['test/unit/index.js'],
     }],
     // allow debugger during development
     'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
@@ -36,7 +38,11 @@ module.exports = {
     'global-require': 0,
     'linebreak-style': 0,
 
-    // eslint-plugin-vue configuration
+    // eslint-plugin-promise
+    'promise/prefer-await-to-then': 2,
+    'promise/prefer-await-to-callbacks': 2,
+
+    // eslint-plugin-vue
     'vue/html-end-tags': 2,
     'vue/html-no-self-closing': 2,
     'vue/html-quotes': 2,
@@ -50,7 +56,7 @@ module.exports = {
     'vue/v-bind-style': 2,
     'vue/v-on-style': 2,
 
-    // eslint-plugin-unicorn configuration
+    // eslint-plugin-unicorn
     'unicorn/filename-case': 0,
     'unicorn/explicit-length-check': [0, {
       'non-zero': 'greater-than',
