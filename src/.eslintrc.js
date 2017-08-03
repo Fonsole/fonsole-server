@@ -1,5 +1,6 @@
 // http://eslint.org/docs/user-guide/configuring
 
+// eslint-disable-next-line no-undef
 module.exports = {
   env: {
     browser: true,
@@ -12,8 +13,8 @@ module.exports = {
   // check if imports actually resolve
   settings: {
     'import/resolver': {
-      'webpack': {
-        'config': 'webpack.config.js',
+      webpack: {
+        config: 'webpack.config.js',
       },
     },
   },
