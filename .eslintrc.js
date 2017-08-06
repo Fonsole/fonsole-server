@@ -1,12 +1,10 @@
-// http://eslint.org/docs/user-guide/configuring
-
 module.exports = {
   root: true,
   parserOptions: {
     sourceType: 'module',
   },
   env: {
-    es6: true,
+    browser: true,
     node: true,
   },
   extends: [
@@ -40,7 +38,6 @@ module.exports = {
 
     // eslint-plugin-promise
     'promise/prefer-await-to-then': 2,
-    'promise/prefer-await-to-callbacks': 2,
 
     // eslint-plugin-vue
     'vue/html-end-tags': 2,

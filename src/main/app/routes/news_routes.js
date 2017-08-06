@@ -1,6 +1,6 @@
 const ObjectID = require('mongodb').ObjectID;
 
-module.exports = function (app, db) {
+module.exports = (app, db) => {
   app.get('/news/:id', (req, res) => {
     const id = req.params.id;
     const details = { _id: new ObjectID(id) };
@@ -15,7 +15,7 @@ module.exports = function (app, db) {
   app.delete('/news/:id', (req, res) => {
     const id = req.params.id;
     const details = { _id: new ObjectID(id) };
-    db.collection('news').remove(details, (err, item) => {
+    db.collection('news').remove(details, (err) => {
       if (err) {
         res.send({ error: 'An error has occurred' });
       } else {
@@ -27,7 +27,7 @@ module.exports = function (app, db) {
     const id = req.params.id;
     const details = { _id: new ObjectID(id) };
     const note = { text: req.body.body, title: req.body.title };
-    db.collection('news').update(details, note, (err, result) => {
+    db.collection('news').update(details, note, (err) => {
       if (err) {
         res.send({ error: 'An error has occurred' });
       } else {

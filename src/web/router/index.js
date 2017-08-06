@@ -2,9 +2,9 @@ import Router from 'vue-router';
 import Vue from 'vue';
 
 // Routes
-import Root from '@/components/Index';
-import NotFound from '@/components/NotFound';
-import Game from '@/components/Game';
+import Root from '@/components/home/Home';
+import NotFound from '@/components/not-found/NotFound';
+import Game from '@/components/game/Game';
 
 Vue.use(Router);
 

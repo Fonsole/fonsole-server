@@ -1,16 +1,8 @@
 import NetworkingAPI from 'fonsole-networking/client';
-import Vue from 'vue';
-import Vuex from 'vuex';
-
-import App from './App';
-import Localization from './localization';
-import router from './router';
-
-Vue.use(Vuex);
-Vue.config.productionTip = false;
 
 const networking = new NetworkingAPI();
-const store = new Vuex.Store({
+
+export default {
   state: {
     roomName: '',
     currentGame: '',
@@ -31,22 +23,4 @@ const store = new Vuex.Store({
       return roomName;
     },
   },
-});
-
-Vue.use(Localization, store);
-
-// eslint-disable-next-line no-new
-new Vue({
-  components: { App },
-  el: '#app',
-  template: '<App/>',
-  store,
-  router,
-  /*
-  methods: {
-    disconnect() {
-      this.$state.mutations.disconnect();
-    },
-  },
-  */
-});
+};
