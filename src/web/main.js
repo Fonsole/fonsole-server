@@ -12,11 +12,13 @@ Vue.config.devtools = true;
 Vue.use(Vuex);
 Vue.use(Localization, store);
 
-// eslint-disable-next-line no-new
-new Vue({
+const vm = new Vue({
   components: { App },
   el: '#app',
   template: '<App/>',
   store,
   router,
 });
+
+// Initialize mobileInterface module
+vm.$store.dispatch('init');

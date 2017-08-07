@@ -17,9 +17,9 @@ export default {
     },
   },
   actions: {
-    async joinRoom(state, payload) {
+    async joinRoom(store, payload) {
       const { roomName } = await networking.joinRoom(payload.roomName);
-      state.commit('setRoomName', roomName);
+      store.commit('setRoomName', roomName);
       return roomName;
     },
   },
