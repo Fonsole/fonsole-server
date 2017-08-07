@@ -96,9 +96,9 @@ function startMain() {
 
       logStats('Main', stats);
 
-      // Reload?
+      // Restart node.js server process
       if (serverProcess) serverProcess.kill();
-      serverProcess = fork('./dist/main/main.js', {
+      serverProcess = fork('./dist/main/index.js', {
         stdio: [0, 1, 2, 'ipc'],
       });
 
