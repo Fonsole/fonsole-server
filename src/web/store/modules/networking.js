@@ -7,6 +7,9 @@ export default {
     roomName: '',
     currentGame: '',
   },
+  getters: {
+    isValidRoomName: () => roomName => NetworkingAPI.isValidRoomName(roomName),
+  },
   mutations: {
     setRoomName: (state, roomName) => {
       state.roomName = roomName;
