@@ -67,12 +67,12 @@ function startRenderer() {
       },
     });
 
-    server.listen(8080);
+    server.listen(80);
   });
 }
 
 function startBrowser() {
-  opn('http://localhost:8080/');
+  opn('http://localhost/');
 }
 
 function startMain() {

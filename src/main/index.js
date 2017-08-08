@@ -16,7 +16,7 @@ networking.listen();
 
 
 // process.env.PORT will be replaced with a pipe by azure if not hosted there the given port is used
-const port = process.env.PORT || 80;
+const port = process.env.PORT || 81;
 
 // open the port for clients to connect
 app.listen(port, () => {
