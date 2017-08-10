@@ -108,35 +108,33 @@ const webConfig = {
   },
 };
 
-/**
- * Adjust webConfig for production settings
- */
-if (process.env.NODE_ENV === 'production') {
-  webConfig.devtool = '#source-map';
+switch (process.env.NODE_ENV) {
+  case 'production': {
+    webConfig.devtool = '#source-map';
 
-  webConfig.plugins.push(
-    new ExtractTextPlugin('style.css'),
-    new BabiliWebpackPlugin({
-      // removeConsole: true,
-      removeDebugger: true,
-    }),
-    new CopyWebpackPlugin([
-      {
-        from: path.join(__dirname, '../static'),
-        to: path.join(__dirname, '../dist/web/static'),
-        ignore: ['.*'],
-      },
-    ]),
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': '"production"',
-    }),
-    new webpack.LoaderOptionsPlugin({
-      minimize: true,
-    }),
-    new webpack.BannerPlugin({
-      test: /\.js$/,
-      exclude: /node_modules/,
-      banner: `
+    webConfig.plugins.push(
+      new webpack.DefinePlugin({
+        'process.env.NODE_ENV': 'production',
+      }),
+      new ExtractTextPlugin('style.css'),
+      new BabiliWebpackPlugin({
+        // removeConsole: true,
+        removeDebugger: true,
+      }),
+      new CopyWebpackPlugin([
+        {
+          from: path.join(__dirname, '../static'),
+          to: path.join(__dirname, '../dist/web/static'),
+          ignore: ['.*'],
+        },
+      ]),
+      new webpack.LoaderOptionsPlugin({
+        minimize: true,
+      }),
+      new webpack.BannerPlugin({
+        test: /\.js$/,
+        exclude: /node_modules/,
+        banner: `
 ███████╗ ██████╗ ███╗   ██╗███████╗ ██████╗ ██╗     ███████╗
 ██╔════╝██╔═══██╗████╗  ██║██╔════╝██╔═══██╗██║     ██╔════╝
 █████╗  ██║   ██║██╔██╗ ██║███████╗██║   ██║██║     █████╗
@@ -144,6 +142,21 @@ if (process.env.NODE_ENV === 'production') {
 ██║     ╚██████╔╝██║ ╚████║███████║╚██████╔╝███████╗███████╗
 ╚═╝      ╚═════╝ ╚═╝  ╚═══╝╚══════╝ ╚═════╝ ╚══════╝╚══════╝
 ` }));
+    break;
+  }
+  case 'testing': {
+    // apply vue option to apply isparta-loader on js
+    webConfig.module.rules
+      .find(rule => rule.use.loader === 'vue-loader').use.options.loaders.js = 'babel-loader';
+    webConfig.devtool = '#inline-source-map';
+    delete webConfig.entry;
+    delete webConfig.externals;
+    delete webConfig.output.libraryTarget;
+    break;
+  }
+  default: { // development
+
+  }
 }
 
 module.exports = webConfig;

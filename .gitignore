@@ -13,4 +13,5 @@ thumbs.db
 *.njsproj
 *.sln
 
+test/unit/coverage/*
 dist/*
